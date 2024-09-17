@@ -13,12 +13,12 @@ curl_setopt($ch, CURLOPT_USERAGENT, "F4enN");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
+$status = curl_getinfo($ch)['http_code'];
 
-if (!$response) {
-    echo '';
-    return;
+if($status !== 200){
+    echo "User not found";
+    exit;
 }
-
 $data = json_decode($response, true);
 
 if (empty($data)) {
@@ -27,12 +27,10 @@ if (empty($data)) {
 }
 
 foreach ($data as $v) {
-    print_r($v);
     if ($v['type'] === 'PushEvent') {
         $msg = $v['payload']['commits'][0]['message'];
         $repo_name = $v['repo']['name'];
         $url = $v['repo']['url'];
-        print_r($v);
         $time = date('F j, Y, H:m', strtotime($v['created_at']));
         echo "\e[92mRecent Activity:\e[0m \n";
         echo "-----------------------------------\n";
