@@ -4,8 +4,8 @@ This is a simple command-line interface (CLI) application written in PHP for che
 
 ## Features:
 - Provide the GitHub username as an argument.
-- Fetch the recent activity of the specified GitHub user
-- Fetch the recent activity of the specified GitHub user
+- Fetch the recent activity of the specified GitHub user.
+- Display the fetched activity in the terminal.
 
  inspiration: <a href="https://roadmap.sh/projects/github-user-activity" target="_blank">roadmap.sh</a>
 
